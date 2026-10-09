@@ -30,10 +30,10 @@ export const HomeScreen = () => {
   const navigation = useNavigation<NativeStackNavigationProp<any>>();
   const [searchText, setSearchText] = useState('');
 
-  // Debounce t??m ki???m ????ng DEBOUNCE_MS t??? seed MSSV
+  // Debounce tìm kiếm đúng DEBOUNCE_MS từ seed MSSV
   const debouncedSearch = useDebouncedValue(searchText, DEBOUNCE_MS);
 
-  // TanStack Query v???i staleTime = STALE_TIME_MS
+  // TanStack Query với staleTime = STALE_TIME_MS
   const {
     data: products,
     isLoading,
@@ -47,7 +47,7 @@ export const HomeScreen = () => {
     staleTime: STALE_TIME_MS,
   });
 
-  // L???c s???n ph???m theo chu???i ???? debounce
+  // Lọc sản phẩm theo chuỗi đã debounce
   const filteredProducts = useMemo(() => {
     if (!products) return [];
     if (!debouncedSearch.trim()) return products;
@@ -63,17 +63,17 @@ export const HomeScreen = () => {
     <SafeAreaView style={styles.safeArea} edges={['top', 'left', 'right']}>
       {VARIANT.watermarkAtTop && <Watermark />}
 
-      {/* (A) Header KTXGO + Giao t???n {ROOM_LABEL} */}
+      {/* (A) Header KTXGO + Giao tận {ROOM_LABEL} */}
       <View style={styles.header}>
         <Text style={styles.headerTitle}>KTXGO</Text>
-        <Text style={styles.headerSubtitle}>Giao t???n {ROOM_LABEL}</Text>
+        <Text style={styles.headerSubtitle}>Giao tận {ROOM_LABEL}</Text>
       </View>
 
-      {/* (B) ?? t??m controlled; filter theo b???n debounce DEBOUNCE_MS */}
+      {/* (B) Ô tìm controlled; filter theo bản debounce DEBOUNCE_MS */}
       <View style={styles.searchContainer}>
         <TextInput
           style={styles.searchInput}
-          placeholder={`T??m m??n (debounce) ??? ${STUDENT.mssv}`}
+          placeholder={`Tìm món (debounce) — ${STUDENT.mssv}`}
           placeholderTextColor={theme.textLight}
           value={searchText}
           onChangeText={setSearchText}
@@ -81,34 +81,34 @@ export const HomeScreen = () => {
         />
       </View>
 
-      {/* Ba c???nh m???ng (thi???u m???t = sai C??u 2b) */}
-      {/* C???nh 1: ??ANG T???I */}
+      {/* Ba cảnh mạng (thiếu một = sai Câu 2b) */}
+      {/* Cảnh 1: ĐANG TẢI */}
       {isLoading && (
         <View style={styles.centerContainer}>
           <ActivityIndicator size="large" color={theme.primary} />
-          <Text style={styles.loadingText}>??ang t???i m??n...</Text>
+          <Text style={styles.loadingText}>Đang tải món...</Text>
         </View>
       )}
 
-      {/* C???nh 3: L???I M???NG (c?? MSSV + Th??? l???i) */}
+      {/* Cảnh 3: LỖI MẠNG (có MSSV + Thử lại) */}
       {!isLoading && isError && (
         <View style={styles.centerContainer}>
           <Text style={styles.errorMssv}>{STUDENT.mssv}</Text>
           <Text style={styles.errorText}>
-            Kh??ng t???i ???????c d??? li???u m??n.{'\n'}
-            {(error as Error)?.message || 'Vui l??ng ki???m tra k???t n???i m???ng.'}
+            Không tải được dữ liệu món.{'\n'}
+            {(error as Error)?.message || 'Vui lòng kiểm tra kết nối mạng.'}
           </Text>
           <TouchableOpacity
             style={styles.retryButton}
             activeOpacity={0.8}
             onPress={() => refetch()}
           >
-            <Text style={styles.retryButtonText}>Th??? l???i</Text>
+            <Text style={styles.retryButtonText}>Thử lại</Text>
           </TouchableOpacity>
         </View>
       )}
 
-      {/* C???nh 2: C?? D??? LI???U L?????I */}
+      {/* Cảnh 2: CÓ DỮ LIỆU LƯỚI */}
       {!isLoading && !isError && (
         <View style={styles.listWrapper}>
           {React.createElement(FlashList as any, {
@@ -124,7 +124,7 @@ export const HomeScreen = () => {
             contentContainerStyle: styles.listContent,
             ListEmptyComponent: (
               <View style={styles.emptyContainer}>
-                <Text style={styles.emptyText}>Kh??ng t??m th???y m??n ph?? h???p</Text>
+                <Text style={styles.emptyText}>Không tìm thấy món phù hợp</Text>
               </View>
             ),
           })}
@@ -225,4 +225,3 @@ const styles = StyleSheet.create({
     color: theme.textLight,
   },
 });
-

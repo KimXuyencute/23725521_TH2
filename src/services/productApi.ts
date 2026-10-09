@@ -13,15 +13,14 @@ export interface Product {
   };
 }
 
-// L???y danh s??ch 12 m??n ??n/s???n ph???m KTXGo t??? fake store API
+// Lấy danh sách 12 món ăn/sản phẩm KTXGo từ fake store API
 export const getProducts = async (): Promise<Product[]> => {
   const response = await apiClient.get<Product[]>('/products?limit=12');
   return response.data;
 };
 
-// L???y chi ti???t m??n theo id
+// Lấy chi tiết món theo id
 export const getProductById = async (id: string | number): Promise<Product> => {
   const response = await apiClient.get<Product>(`/products/${id}`);
   return response.data;
 };
-

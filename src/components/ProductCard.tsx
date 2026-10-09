@@ -26,16 +26,16 @@ export const triggerHaptic = () => {
       Vibration.vibrate(15);
     }
   } catch (_e) {
-    // B??? qua n???u thi???t b??? kh??ng h??? tr??? rung
+    // Bỏ qua nếu thiết bị không hỗ trợ rung
   }
 };
 
 export const ProductCard: React.FC<ProductCardProps> = ({ product, onPress }) => {
   const addItem = useCartStore((s) => s.addItem);
 
-  // T??nh gi?? theo c??ng th???c: Math.round(price * PRICE_MULTIPLIER)
+  // Tính giá theo công thức: Math.round(price * PRICE_MULTIPLIER)
   const finalPrice = Math.round(product.price * PRICE_MULTIPLIER);
-  const formattedPrice = finalPrice.toLocaleString('vi-VN') + ' ??';
+  const formattedPrice = finalPrice.toLocaleString('vi-VN') + ' đ';
 
   const handleAdd = () => {
     triggerHaptic();
@@ -76,7 +76,7 @@ export const ProductCard: React.FC<ProductCardProps> = ({ product, onPress }) =>
           style={styles.addButton}
           activeOpacity={0.7}
           onPress={handleAdd}
-          accessibilityLabel="Th??m v??o gi???"
+          accessibilityLabel="Thêm vào giỏ"
         >
           <Text style={styles.addIcon}>+</Text>
         </TouchableOpacity>
@@ -156,4 +156,3 @@ const styles = StyleSheet.create({
     lineHeight: 20,
   },
 });
-

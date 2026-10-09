@@ -6,7 +6,7 @@ export const apiClient = axios.create({
   timeout: 10000,
 });
 
-// Interceptor t??? ?????ng ????nh k??m X-Student-Id: {mssv} v??o m???i request
+// Interceptor tự động đính kèm X-Student-Id: {mssv} vào mọi request
 apiClient.interceptors.request.use(
   (config) => {
     config.headers['X-Student-Id'] = STUDENT.mssv;
@@ -16,4 +16,3 @@ apiClient.interceptors.request.use(
     return Promise.reject(error);
   },
 );
-

@@ -6,7 +6,7 @@ import { STUDENT } from '@constants/student';
 export interface CartItem {
   id: number;
   title: string;
-  price: number; // Gi?? ???? nh??n PRICE_MULTIPLIER
+  price: number; // Giá đã nhân PRICE_MULTIPLIER
   image: string;
   quantity: number;
 }
@@ -16,7 +16,7 @@ interface CartState {
   shippingFee: number | null;
   distanceKm: number | null;
 
-  // Actions b???t bu???c: add / remove / changeQty / totalQuantity / totalAmount
+  // Actions bắt buộc: add / remove / changeQty / totalQuantity / totalAmount
   addItem: (product: { id: number; title: string; price: number; image: string }) => void;
   removeItem: (id: number) => void;
   changeQty: (id: number, delta: number) => void;
@@ -29,7 +29,7 @@ interface CartState {
   totalAmount: () => number;
 }
 
-// Ki???m tra xem native module c???a AsyncStorage c?? tr??n APK hi???n t???i kh??ng
+// Kiểm tra xem native module của AsyncStorage có trên APK hiện tại không
 const hasNativeAsyncStorage = Boolean(
   NativeModules?.PlatformLocalStorage ||
   NativeModules?.RNC_AsyncSQLiteDBStorage ||
@@ -135,7 +135,7 @@ export const useCartStore = create<CartState>()(
       },
     }),
     {
-      name: `ktxgo-cart-${STUDENT.mssv}`, // Persist key c?? MSSV: ktxgo-cart-23725521
+      name: `ktxgo-cart-${STUDENT.mssv}`, // Persist key có MSSV: ktxgo-cart-23725521
       storage: createJSONStorage(() => safeAsyncStorage),
       partialize: (state) => ({
         items: state.items,
@@ -145,4 +145,3 @@ export const useCartStore = create<CartState>()(
     },
   ),
 );
-

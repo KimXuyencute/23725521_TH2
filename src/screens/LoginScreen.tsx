@@ -26,8 +26,8 @@ export const LoginScreen = () => {
     const trimmed = inputValue.trim();
     if (!trimmed) {
       Alert.alert(
-        'L???i ????ng nh???p',
-        isPhone ? 'Vui l??ng nh???p s??? ??i???n tho???i sinh vi??n' : 'Vui l??ng nh???p email sinh vi??n',
+        'Lỗi đăng nhập',
+        isPhone ? 'Vui lòng nhập số điện thoại sinh viên' : 'Vui lòng nhập email sinh viên',
       );
       return;
     }
@@ -44,11 +44,11 @@ export const LoginScreen = () => {
       >
         <View style={styles.card}>
           <Text style={styles.brandTitle}>KTXGO</Text>
-          <Text style={styles.brandSubtitle}>Giao ????? t???n ph??ng k?? t??c x??</Text>
+          <Text style={styles.brandSubtitle}>Giao đồ tận phòng ký túc xá</Text>
 
           <View style={styles.inputWrapper}>
             <Text style={styles.label}>
-              {isPhone ? 'S??? ??i???n tho???i sinh vi??n' : 'Email sinh vi??n'}
+              {isPhone ? 'Số điện thoại sinh viên' : 'Email sinh viên'}
             </Text>
             <TextInput
               style={styles.input}
@@ -57,7 +57,7 @@ export const LoginScreen = () => {
               keyboardType={isPhone ? 'phone-pad' : 'email-address'}
               placeholder={
                 isPhone
-                  ? `S??T (MSSV: ${STUDENT.mssv})`
+                  ? `SĐT (MSSV: ${STUDENT.mssv})`
                   : `Email (MSSV: ${STUDENT.mssv})`
               }
               placeholderTextColor={theme.textLight}
@@ -70,10 +70,10 @@ export const LoginScreen = () => {
             activeOpacity={0.8}
             onPress={handleLogin}
           >
-            <Text style={styles.buttonText}>V??o c???a h??ng</Text>
+            <Text style={styles.buttonText}>Vào cửa hàng</Text>
           </TouchableOpacity>
 
-          <Text style={styles.footerHint}>Auth Stack ?? ch??a c?? token</Text>
+          <Text style={styles.footerHint}>Auth Stack · chưa có token</Text>
         </View>
       </KeyboardAvoidingView>
 
@@ -161,4 +161,3 @@ const styles = StyleSheet.create({
     marginTop: 18,
   },
 });
-

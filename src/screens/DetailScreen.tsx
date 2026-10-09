@@ -41,7 +41,7 @@ export const DetailScreen = () => {
   });
 
   const finalPrice = product ? Math.round(product.price * PRICE_MULTIPLIER) : 0;
-  const formattedPrice = finalPrice.toLocaleString('vi-VN') + ' ??';
+  const formattedPrice = finalPrice.toLocaleString('vi-VN') + ' đ';
 
   const handleAddToCart = () => {
     if (!product) return;
@@ -53,8 +53,8 @@ export const DetailScreen = () => {
       image: product.image,
     });
     Alert.alert(
-      'Th??nh c??ng',
-      `???? th??m m??n v??o gi???!\nMSSV: ${STUDENT.mssv} - ${STUDENT.hoTen}`,
+      'Thành công',
+      `Đã thêm món vào giỏ!\nMSSV: ${STUDENT.mssv} - ${STUDENT.hoTen}`,
     );
   };
 
@@ -67,7 +67,7 @@ export const DetailScreen = () => {
           onPress={() => navigation.goBack()}
           style={styles.backButton}
         >
-          <Text style={styles.backButtonText}>??? Chi ti???t m??n</Text>
+          <Text style={styles.backButtonText}>← Chi tiết món</Text>
         </TouchableOpacity>
         <Text style={styles.badgePresentation}>Stack</Text>
       </View>
@@ -75,20 +75,20 @@ export const DetailScreen = () => {
       {isLoading && (
         <View style={styles.centerContainer}>
           <ActivityIndicator size="large" color={theme.primary} />
-          <Text style={styles.loadingText}>??ang t???i th??ng tin m??n...</Text>
+          <Text style={styles.loadingText}>Đang tải thông tin món...</Text>
         </View>
       )}
 
       {isError && (
         <View style={styles.centerContainer}>
           <Text style={styles.errorText}>
-            Kh??ng th??? t???i m??n id: {productId}
+            Không thể tải món id: {productId}
           </Text>
           <TouchableOpacity
             style={styles.backButtonCenter}
             onPress={() => navigation.goBack()}
           >
-            <Text style={styles.backButtonCenterText}>Quay l???i</Text>
+            <Text style={styles.backButtonCenterText}>Quay lại</Text>
           </TouchableOpacity>
         </View>
       )}
@@ -108,16 +108,16 @@ export const DetailScreen = () => {
             <Text style={styles.price}>{formattedPrice}</Text>
 
             <View style={styles.badgeRow}>
-              <Text style={styles.subText}>Giao n???i khu ?? nh???n t???n ph??ng</Text>
+              <Text style={styles.subText}>Giao nội khu · nhận tận phòng</Text>
             </View>
 
-            <Text style={styles.descTitle}>M?? t??? ng???n t??? API (t???i ??a 3 d??ng):</Text>
+            <Text style={styles.descTitle}>Mô tả ngắn từ API (tối đa 3 dòng):</Text>
             <Text style={styles.description} numberOfLines={3}>
               {product.description}
             </Text>
 
             <Text style={styles.idNotice}>
-              Gi??? nguy??n id t??? route.params: {productId}
+              Giữ nguyên id từ route.params: {productId}
             </Text>
 
             <TouchableOpacity
@@ -125,7 +125,7 @@ export const DetailScreen = () => {
               activeOpacity={0.8}
               onPress={handleAddToCart}
             >
-              <Text style={styles.addButtonText}>Th??m v??o gi??? ?? Haptic</Text>
+              <Text style={styles.addButtonText}>Thêm vào giỏ · Haptic</Text>
             </TouchableOpacity>
           </View>
         </ScrollView>
@@ -274,4 +274,3 @@ const styles = StyleSheet.create({
     fontWeight: '700',
   },
 });
-

@@ -12,7 +12,7 @@ export const useAuthStore = create<AuthState>((set) => ({
   token: null,
   identifier: '',
   login: (input: string) => {
-    // N??t V??o c???a h??ng l??u token gi??? ktxgo-{mssv}-{stamp} r???i v??o Main Tabs
+    // Nút Vào cửa hàng lưu token giả ktxgo-{mssv}-{stamp} rồi vào Main Tabs
     const fakeToken = `ktxgo-${STUDENT.mssv}-${examStamp()}`;
     set({ token: fakeToken, identifier: input });
   },
@@ -20,4 +20,3 @@ export const useAuthStore = create<AuthState>((set) => ({
     set({ token: null, identifier: '' });
   },
 }));
-
