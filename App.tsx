@@ -1,36 +1,22 @@
+// TH2 | 23725521 | NGUYỄN THỊ KIM XUYẾN | #472350
 import React from 'react';
-import { SafeAreaView, StatusBar, StyleSheet, Text, View } from 'react-native';
+import { StatusBar } from 'react-native';
+import { SafeAreaProvider } from 'react-native-safe-area-context';
+import { QueryClient, QueryClientProvider } from '@tanstack/react-query';
+import { NavigationContainer } from '@react-navigation/native';
+import { RootNavigator } from '@navigation/RootNavigator';
+
+const queryClient = new QueryClient();
 
 export default function App() {
   return (
-    <SafeAreaView style={styles.container}>
+    <SafeAreaProvider>
       <StatusBar barStyle="dark-content" />
-      <View style={styles.content}>
-        <Text style={styles.title}>KTXGo - 23725521</Text>
-        <Text style={styles.subtitle}>D? ?n kh?i t?o React Native CLI</Text>
-      </View>
-    </SafeAreaView>
+      <QueryClientProvider client={queryClient}>
+        <NavigationContainer>
+          <RootNavigator />
+        </NavigationContainer>
+      </QueryClientProvider>
+    </SafeAreaProvider>
   );
 }
-
-const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    backgroundColor: '#EFF6FF',
-  },
-  content: {
-    flex: 1,
-    justifyContent: 'center',
-    alignItems: 'center',
-  },
-  title: {
-    fontSize: 24,
-    fontWeight: 'bold',
-    color: '#1D4ED8',
-  },
-  subtitle: {
-    fontSize: 14,
-    color: '#64748B',
-    marginTop: 8,
-  },
-});
